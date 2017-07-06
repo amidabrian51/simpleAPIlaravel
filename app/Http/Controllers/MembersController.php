@@ -19,7 +19,7 @@ class MembersController extends Controller
     //5. No way to signal headers/response codes
     $member = Member::all();//not a great idea.
     return response()->json([
-      'data'=> $member->toArray(),
+      'data'=> $this->transformCollection($member)
     ], 200);
   }
 
@@ -35,5 +35,20 @@ class MembersController extends Controller
     return response()->json([
       'data'=> $member->toArray(),
     ], 200);
+  }
+  private function transformCollection($member)
+  {
+    return array_map([$this, 'transform'],$member->toArray());
+  }
+
+  private function transform($member)
+  {
+      return [
+        'title'=>$member['title'],
+        'author'=>$member['author'],
+        'description'=>$member['description'],
+        'comments'=>$member['comments'],
+        'active'=>(boolean)$member['some_bool']
+      ];
   }
 }

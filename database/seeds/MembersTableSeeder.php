@@ -20,7 +20,8 @@ class MembersTableSeeder extends Seeder
           'title'=> $faker->sentence(5),
           'author'=> $faker->name(10),
           'description'=>$faker->paragraph(4),
-          'comments'=>$faker->paragraph(2)
+          'comments'=>$faker->paragraph(2),
+          'some_bool'=>$faker->boolean()
         ]);
       }
 

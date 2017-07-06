@@ -19,6 +19,7 @@ class CreateTableMembers extends Migration
         $table->string('author');
         $table->text('description');
         $table->text('comments');
+        $table->boolean('some_bool');
         $table->timestamps();
       });
     }
